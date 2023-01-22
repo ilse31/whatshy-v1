@@ -7,7 +7,7 @@ const About = () =>
 {
     return (
         <MainLayout>
-            <div className='w-full h-screen absolute' />
+            <div className='w-full h-screen absolute' id='about' />
             <div className='max-w-7xl mx-auto p-5 z-40 relative text-[#01D2B3]'>
                 <div className="flex justify-center flex-col md:flex-row-reverse items-center min-h-screen gap-10">
                     <div className='kanan'>

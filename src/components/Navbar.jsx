@@ -43,6 +43,16 @@ const Navbar = () =>
         x: dropDown.message ? 0 : 20,
         y: dropDown.message ? 0 : 20,
     }
+    const handleClickScroll = ( id ) =>
+    {
+        const element = document.getElementById( id );
+        if ( element )
+        {
+            // 👇 Will scroll smoothly to the top of the next section
+            element.scrollIntoView( { behavior: 'smooth' } );
+        }
+        console.log( element );
+    };
     return (
         <div className='py-3 w-full px-4 top-0 font-poppins font-normal text-[#00AC94]  border-b shadow-sm top-0 sticky bg-white z-50' >
             <div className="flex justify-between flex-col md:flex-row max-w-screen-2xl mx-auto">
@@ -76,11 +86,10 @@ const Navbar = () =>
                     },
                 } }
                     className={ `flex flex-col md:flex-row gap-10 ${ navOpen ? "hidden" : "block" }  md:h-full h-screen md:justify-start justify-center` }>
-                    <div className='cursor-pointer py-2 text-center'>Home</div>
-                    <div className="cursor-pointer py-2 text-center">About Us</div>
-                    <div className="cursor-pointer py-2 text-center">Contact Us</div>
-                    <div className="cursor-pointer py-2 text-center">Faq</div>
-                    <button className='bg-[#00AC94] text-white px-6 py-2 rounded-full'>Login</button>
+                    <div className='cursor-pointer py-2 text-center' onClick={ () => handleClickScroll( "home" ) }>Home</div>
+                    <div className="cursor-pointer py-2 text-center" onClick={ () => handleClickScroll( "about" ) }>About Us</div>
+                    <div className="cursor-pointer py-2 text-center" onClick={ () => handleClickScroll( "contact" ) }>Contact Us</div>
+                    <button className='bg-[#00AC94] text-white px-6 py-2 rounded-full hover:bg-[#06d7bc] transition-colors ease-in-out duration-300'>Login</button>
                     {/* <div className='cursor-pointer'>
                         <div className="flex items-center gap-1" onClick={ () => setdropDown( {
                             message: !dropDown.message,

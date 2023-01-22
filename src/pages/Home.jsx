@@ -8,7 +8,7 @@ const Home = () =>
 {
     return (
         <MainLayout>
-            <div className='w-full bg-[#01D2B3] h-screen absolute' />
+            <div className='w-full bg-[#01D2B3] h-screen absolute' id='home' />
             <div className='max-w-7xl mx-auto p-5 z-40 relative'>
                 <div className="flex justify-between flex-col md:flex-row items-center min-h-screen">
                     <div className='kanan text-white'>

@@ -5,9 +5,9 @@ const ContactUs = () =>
 {
     return (
         <MainLayout>
-            <div className='md:w-1/2 w-full bg-[#01D2B3] h-screen absolute' />
+            <div className='md:w-1/2 w-full bg-[#01D2B3] h-screen absolute' id='contact' />
             <div className='max-w-7xl mx-auto p-5 z-40 relative text-white'>
-                <div className="flex justify-center flex-col md:flex-row gap-10 min-h-screen">
+                <div className="flex justify-center mt-10 flex-col md:flex-row gap-10 min-h-screen">
                     <div className='kanan'>
                         <div className='flex justify-start flex-col'>
                             <h2 className='font-poppins font-normal text-3xl'>Contact Us</h2>
@@ -28,7 +28,7 @@ const ContactUs = () =>
                                             <textarea type="text" name="subject" id="subject" className="border-2 border-[#01D2B3] rounded-md p-2" />
                                         </div>
                                     </div>
-                                    <button className="bg-[#01D2B3] text-white font-poppins font-semibold text-lg mt-5 rounded-md p-2">Send</button>
+                                    <button className="bg-[#01D2B3] hover:bg-[#00a38d] transition-colors ease-in-out duration-300 text-white font-poppins font-semibold text-lg mt-5 rounded-md p-2">Send</button>
                                 </div>
                             </div>
                             <div className='flex gap-5'>
