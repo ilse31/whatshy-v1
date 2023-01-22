@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion } from "framer-motion";
-import Navbar from '../components';
 
 const AnimateLayout = ( { children } ) =>
 {
@@ -22,12 +21,11 @@ const AnimateLayout = ( { children } ) =>
     const motionTransition = {
         type: "tween",
         ease: "anticipate",
-        duration: 0.4,
+        duration: 0.8,
     };
 
     return (
-        <div className='container md:mx-auto mx-auto m-0'>
-            <Navbar />
+        <div className='container'>
             <motion.div
                 initial='initial'
                 animate='in'

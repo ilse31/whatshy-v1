@@ -1,3 +1,4 @@
 import Navbar from "./Navbar";
+import DropdownItem from "./DropdownItem";
 
-export default Navbar;
+export { Navbar, DropdownItem };
