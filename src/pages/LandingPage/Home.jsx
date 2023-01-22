@@ -1,8 +1,8 @@
 import React from 'react'
-import MainLayout from '../layouts/MainLayout'
-import iphoneMockup from "../assets/iphonemockup.svg"
-import apstore from "../assets/play-store-icon.png"
-import gplay from "../assets/Get_it_on_Google_play.png"
+import MainLayout from '../../layouts/MainLayout'
+import iphoneMockup from "../../assets/iphonemockup.svg"
+import apstore from "../../assets/play-store-icon.png"
+import gplay from "../../assets/Get_it_on_Google_play.png"
 
 const Home = () =>
 {

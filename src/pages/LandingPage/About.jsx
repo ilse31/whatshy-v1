@@ -1,6 +1,6 @@
 import React from 'react'
-import iphoneMockup from "../assets/iPhone 13 Pro.svg"
-import MainLayout from '../layouts/MainLayout'
+import iphoneMockup from "../../assets/iPhone 13 Pro.svg"
+import MainLayout from '../../layouts/MainLayout'
 
 
 const About = () =>

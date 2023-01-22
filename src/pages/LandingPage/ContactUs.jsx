@@ -1,6 +1,6 @@
 import React from 'react'
-import MainLayout from '../layouts/MainLayout'
-import iphoneMockup from "../assets/iPhone 12 Pro (Wooden Hands).svg"
+import MainLayout from '../../layouts/MainLayout'
+import iphoneMockup from "../../assets/iPhone 12 Pro (Wooden Hands).svg"
 const ContactUs = () =>
 {
     return (
