@@ -7,8 +7,8 @@ import gplay from "../../assets/Get_it_on_Google_play.png"
 const Home = () =>
 {
     return (
-        <MainLayout>
-            <div className='w-full bg-[#01D2B3] h-screen absolute' id='home' />
+        <MainLayout showNav={ false }>
+            <div className='w-full bg-[#01D2B3] h-full absolute' id='home' ></div>
             <div className='max-w-7xl mx-auto p-5 z-40 relative'>
                 <div className="flex justify-between flex-col md:flex-row items-center min-h-screen">
                     <div className='kanan text-white'>

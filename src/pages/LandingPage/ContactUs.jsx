@@ -4,8 +4,8 @@ import iphoneMockup from "../../assets/iPhone 12 Pro (Wooden Hands).svg"
 const ContactUs = () =>
 {
     return (
-        <MainLayout>
-            <div className='md:w-1/2 w-full bg-[#01D2B3] h-screen absolute' id='contact' />
+        <MainLayout showNav={ false }>
+            <div className='md:w-1/2 w-full bg-[#01D2B3] h-full absolute' id='contact' ></div>
             <div className='max-w-7xl mx-auto p-5 z-40 relative text-white'>
                 <div className="flex justify-center mt-10 flex-col md:flex-row gap-10 min-h-screen">
                     <div className='kanan'>

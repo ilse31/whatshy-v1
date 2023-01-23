@@ -3,6 +3,7 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { BiMenuAltRight, BiX } from "react-icons/bi";
 import DropdownItem from './DropdownItem';
+import { Link } from 'react-router-dom';
 
 const Navbar = () =>
 {
@@ -53,7 +54,7 @@ const Navbar = () =>
         }
         console.log( element );
     };
-    const user = true;
+    const user = false;
     return (
         <div className='py-3 w-full px-4 top-0 font-poppins font-normal text-[#00AC94]  border-b shadow-sm top-0 sticky bg-white z-50' >
             <div className="flex justify-between flex-col md:flex-row max-w-screen-2xl mx-auto">
@@ -109,7 +110,7 @@ const Navbar = () =>
                                     </div>
                                     <DropdownItem variants={ navAnimate } animate={ animateTransitionAcc } potition={ false } hover={ hoverEffect } state={ dropDown.account } dataTitle={ [ 'Profile', 'Logout' ] } />
                                 </div>
-                            </div> : <button className='bg-[#00AC94] text-white px-6 py-2 rounded-full hover:bg-[#06d7bc] transition-colors ease-in-out duration-300'>Login</button>
+                            </div> : <Link to={ "/auth/login" } className='bg-[#00AC94] text-white px-6 py-2 rounded-full hover:bg-[#06d7bc] text-center transition-colors ease-in-out duration-300'>Login</Link>
                     }
                     {/* <div className='cursor-pointer'>History</div> */ }
 
