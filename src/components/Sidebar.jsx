@@ -35,7 +35,7 @@ const Sidebar = ( {
     return (
         <>
             <div className='w-full flex flex-row gap-5'>
-                <aside className="w-64 fixed shadow-md flex h-screen flex-col justify-between px-10 top-0">
+                <aside className="w-1/5 fixed shadow-md flex h-full min-h-screen flex-col justify-between px-10 top-0 fixed absolute">
                     <div className="flex flex-col gap-2 mt-10">
                         { dummyNavbar.map( ( item ) => (
                             <NavLink
@@ -51,7 +51,7 @@ const Sidebar = ( {
                         Hi Admin
                     </div>
                 </aside>
-                <div className='relative left-64 fixed overflow-x-hidden'>
+                <div className='relative left-1/4 w-3/5 fixed overflow-x-hidden'>
                     { children }
                 </div>
             </div >

@@ -54,7 +54,7 @@ const Navbar = () =>
         }
         console.log( element );
     };
-    const user = false;
+    const user = true;
     return (
         <div className='py-3 w-full px-4 top-0 font-poppins font-normal text-[#00AC94]  border-b shadow-sm top-0 sticky bg-white z-50' >
             <div className="flex justify-between flex-col md:flex-row max-w-screen-2xl mx-auto">
