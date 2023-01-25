@@ -25,7 +25,7 @@ const PersonalMessages = () =>
     {
         let messages = values.message
         let number = values.number
-        let getMessages = messages.split( '\n' ).join( "%0A" )
+        let getMessages = messages.split( '\n' ).join( "" )
         let newhistory = []
         newhistory.push( { number: number, text: getMessages, createdAt: new Date() } )
         let history = localStorage.getItem( 'history' )
@@ -75,7 +75,7 @@ const PersonalMessages = () =>
                                 <form onSubmit={ handleSubmit } className='flex flex-col gap-4'>
                                     <div className="flex flex-col gap-2 group">
                                         <label htmlFor="number" className="font-poppins font-semibold text-sm group-focus-within:text-[#01D2B3]">Number</label>
-                                        <input type="text" value={ values.number } onChange={ handleChange } onBlur={ handleBlur } name="number" id="number" className="border-2 bg-white border-[#01D2B3] rounded-md p-1 focus:outline-none focus:bg-white" />
+                                        <input type="text" placeholder='Input Phone Number' value={ values.number } onChange={ handleChange } onBlur={ handleBlur } name="number" id="number" className="border-2 bg-white border-[#01D2B3] rounded-md p-1 focus:outline-none focus:bg-white" />
                                         <span className='text-red-700'>{ errors.number && touched.number && errors.number }</span>
                                     </div>
                                     <div className="flex flex-col gap-2 group">

@@ -43,7 +43,7 @@ const Sidebar = ( {
                                 key={ item.id }
                                 className="dashboard py-3 px-2 font-poppins rounded-[3px] font-semibold text-[#01D2B3] flex gap-4"
                             >
-                                <p>{ item.name }</p>
+                                { item.name }
                             </NavLink>
                         ) ) }
                     </div>
@@ -51,7 +51,7 @@ const Sidebar = ( {
                         Hi Admin
                     </div>
                 </aside>
-                <div className='relative left-1/4 w-3/5 fixed overflow-x-hidden'>
+                <div className='relative left-1/4 w-3/5 fixed overflow-x-hidden min-h-screen h-full'>
                     { children }
                 </div>
             </div >
