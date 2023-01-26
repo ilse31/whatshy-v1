@@ -60,8 +60,8 @@ const Contact = () =>
     const handleAddcontact = ( values ) =>
     {
         addContactval = {
-            number: values.number,
-            name: values.name,
+            number: btoa( values.number ),
+            name: btoa( values.name ),
             user_id: JSON.parse( localStorage.getItem( 'user' ) ).id
         }
         addcontact( addContactval )
@@ -129,8 +129,8 @@ const Contact = () =>
                                     <div className="flex flex-col gap-2 p-5 w-full">
                                         <div className='flex justify-between'>
                                             <div className='flex flex-col gap-2'>
-                                                <span className='capitalize'>{ item.name }</span>
-                                                <span>{ item.number }</span>
+                                                <span className='capitalize'>{ atob( item.name ) }</span>
+                                                <span>{ atob( item.number ) }</span>
                                             </div>
                                             <div className='flex gap-5 items-center'>
                                                 <Tooltip anchorId={ `send-msg-${ index }` }>
