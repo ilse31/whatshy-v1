@@ -18,7 +18,7 @@ const Contact = () =>
             number: '6281234567890',
         },
         {
-            name: 'awdfesff',
+            name: 'ilham',
             number: '6281234567890',
         },
     ]
@@ -34,6 +34,7 @@ const Contact = () =>
 
     const [ formValues, setformValues ] = useState( null )
     const [ chatTemplate, setchatTemplate ] = useState( "" )
+    const [ searchValue, setsearchValue ] = useState( "" )
     let contactValues = {
         number: '',
         name: ''
@@ -87,31 +88,37 @@ const Contact = () =>
                         <span className='font-poppins'>Using Personal Messages you can send message to unsaved number.</span>
                         <label htmlFor="message" className="font-poppins font-semibold text-sm group-focus-within:text-[#01D2B3]">Chat Template</label>
                         <textarea type="text" name="message" value={ chatTemplate } onChange={ ( e ) => setchatTemplate( e.target.value ) } id="message" className="border-2 h-96 bg-white border-[#01D2B3] rounded-md p-1 focus:outline-none focus:bg-white" />
-                        <div>
+                        <div className='flex justify-between'>
                             <Modal button_title={ "add contact" } modal_title="add contact">
                                 <ModalForm contactValues={ addContactval } validationSchema={ validationSchema } />
                             </Modal>
+                            <div>
+                                <input type="text" value={ searchValue } onChange={ ( e ) => setsearchValue( e.target.value ) } placeholder="Search Contact" className="border-2 bg-white border-[#01D2B3] rounded-md px-2 py-1 focus:outline-none focus:bg-white" />
+                            </div>
                         </div>
                         {
-                            contact.map( ( item, index ) =>
+                            contact.filter( ( names ) =>
+                            {
+                                return names.name.toLowerCase().includes( searchValue.toLowerCase() )
+                            } ).map( ( item, index ) =>
                                 <div className="flex border rounded-md shadow hover:shadow-xl ease-linear transition-all duration-150" key={ index }>
                                     <div className="flex flex-col gap-2 p-5 w-full">
                                         <div className='flex justify-between'>
                                             <div className='flex flex-col gap-2'>
-                                                <span>{ item.name }</span>
+                                                <span className='capitalize'>{ item.name }</span>
                                                 <span>{ item.number }</span>
                                             </div>
                                             <div className='flex gap-5 items-center'>
                                                 <Tooltip anchorId={ `send-msg-${ index }` }>
-                                                    <button>Send Messages</button>
+                                                    <span>Send Messages</span>
                                                 </Tooltip>
                                                 <div id={ `send-msg-${ index }` } onClick={ ( e ) => handleSend( e, item.number ) } className='cursor-pointer text-sm px-3 py-2 bg-emerald-500 rounded text-white mb-1'><AiFillMessage /></div>
                                                 <Tooltip anchorId={ `delete-msg-${ index }` }>
-                                                    <button>Delete</button>
+                                                    <span>Delete</span>
                                                 </Tooltip>
                                                 <div id={ `delete-msg-${ index }` } className='cursor-pointer text-sm px-3 py-2 bg-red-500 rounded text-white mb-1'><AiFillDelete className='' /></div>
                                                 <Tooltip anchorId={ `update-${ index }` }>
-                                                    <button>Update Contact</button>
+                                                    <span>Update Contact</span>
                                                 </Tooltip>
                                                 <div id={ `update-${ index }` }
                                                     onClick={ ( e ) => handleEdit( e, item.number, item.name )
