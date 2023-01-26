@@ -8,20 +8,10 @@ import { Tooltip } from 'react-tooltip'
 import * as Yup from 'yup'
 import { AiOutlineEdit, AiFillDelete, AiFillMessage } from "react-icons/ai";
 import ModalForm from '../../components/ModalForm'
+import { useAddPhonebookMutation, useDeletePhonebookMutation, useGetPhonebookQuery, useUpdatePhonebookMutation } from '../../services/api'
 const Contact = () =>
 {
     useDocumentTitle( 'Whatshy | Contact' )
-
-    let contact = [
-        {
-            name: 'Rizky',
-            number: '6281234567890',
-        },
-        {
-            name: 'ilham',
-            number: '6281234567890',
-        },
-    ]
     const phoneRegExp = /^(\+62|62)8[1-9][0-9]{6,9}$/
     const validationSchema =
         Yup.object( {
@@ -44,14 +34,47 @@ const Contact = () =>
         name: ''
     }
 
-    const handleEdit = ( e, number, name ) =>
+    const handleEdit = ( e, number, name, id ) =>
     {
-        setformValues( { number: number, name: name } )
-        console.log( number, name );
+        setformValues( { id: id, number: number, name: name } )
+        console.log( "firm", formValues );
         e.preventDefault();
     }
+    const [ update ] = useUpdatePhonebookMutation()
+    const [ addcontact ] = useAddPhonebookMutation()
+    const [ deleteContact ] = useDeletePhonebookMutation()
+    const { data, refetch } = useGetPhonebookQuery( {
+        id: JSON.parse( localStorage.getItem( 'user' ) ).id
+    } )
 
-
+    const handleUpdate = ( id ) =>
+    {
+        update( {
+            id: id,
+            number: formValues?.number,
+            name: formValues?.name,
+        } )
+        console.log( "update" );
+        refetch()
+    }
+    const handleAddcontact = ( values ) =>
+    {
+        addContactval = {
+            number: values.number,
+            name: values.name,
+            user_id: JSON.parse( localStorage.getItem( 'user' ) ).id
+        }
+        addcontact( addContactval )
+        e.preventDefault();
+        refetch()
+    }
+    const handleDelete = ( e, id ) =>
+    {
+        deleteContact( { id: id } )
+        e.preventDefault();
+        refetch()
+        alert( 'Delete Success' )
+    }
     const handleSend = ( e, number ) =>
     {
         if ( !chatTemplate )
@@ -78,7 +101,8 @@ const Contact = () =>
         e.preventDefault();
     }
 
-
+    const [ showModal, setShowModal ] = React.useState( false );
+    console.log( showModal );
     return (
         <MainLayout>
             <RouteGuard auth={ true }>
@@ -89,15 +113,15 @@ const Contact = () =>
                         <label htmlFor="message" className="font-poppins font-semibold text-sm group-focus-within:text-[#01D2B3]">Chat Template</label>
                         <textarea type="text" name="message" value={ chatTemplate } onChange={ ( e ) => setchatTemplate( e.target.value ) } id="message" className="border-2 h-96 bg-white border-[#01D2B3] rounded-md p-1 focus:outline-none focus:bg-white" />
                         <div className='flex justify-between'>
-                            <Modal button_title={ "add contact" } modal_title="add contact">
-                                <ModalForm contactValues={ addContactval } validationSchema={ validationSchema } />
+                            <Modal button_title={ "add contact" } modal_title="add contact" >
+                                <ModalForm contactValues={ addContactval } validationSchema={ validationSchema } submit={ handleAddcontact } />
                             </Modal>
                             <div>
                                 <input type="text" value={ searchValue } onChange={ ( e ) => setsearchValue( e.target.value ) } placeholder="Search Contact" className="border-2 bg-white border-[#01D2B3] rounded-md px-2 py-1 focus:outline-none focus:bg-white" />
                             </div>
                         </div>
                         {
-                            contact.filter( ( names ) =>
+                            data?.users_by_pk?.contactlist?.filter( ( names ) =>
                             {
                                 return names.name.toLowerCase().includes( searchValue.toLowerCase() )
                             } ).map( ( item, index ) =>
@@ -116,15 +140,19 @@ const Contact = () =>
                                                 <Tooltip anchorId={ `delete-msg-${ index }` }>
                                                     <span>Delete</span>
                                                 </Tooltip>
-                                                <div id={ `delete-msg-${ index }` } className='cursor-pointer text-sm px-3 py-2 bg-red-500 rounded text-white mb-1'><AiFillDelete className='' /></div>
+                                                <div onClick={
+                                                    ( e ) => handleDelete( e, item.id )
+                                                } id={ `delete-msg-${ index }` } className='cursor-pointer text-sm px-3 py-2 bg-red-500 rounded text-white mb-1'><AiFillDelete className='' /></div>
                                                 <Tooltip anchorId={ `update-${ index }` }>
                                                     <span>Update Contact</span>
                                                 </Tooltip>
                                                 <div id={ `update-${ index }` }
-                                                    onClick={ ( e ) => handleEdit( e, item.number, item.name )
+                                                    onClick={ ( e ) => handleEdit( e, item.number, item.name, item.id )
                                                     }>
                                                     <Modal button_title={ <AiOutlineEdit /> } modal_title={ "Edit Contact" } >
-                                                        <ModalForm contactValues={ formValues || contactValues } validationSchema={ validationSchema } />
+                                                        <ModalForm submit={
+                                                            () => handleUpdate( item.id )
+                                                        } contactValues={ formValues || contactValues } validationSchema={ validationSchema } />
                                                     </Modal>
                                                 </div>
                                             </div>

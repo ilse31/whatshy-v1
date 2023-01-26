@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 const RouteGuard = ( {
     children,
-    auth
 } ) =>
 {
     const navigate = useNavigate();
+    const auth = localStorage.getItem( "user" );
     useEffect( () =>
     {
         setTimeout( () =>

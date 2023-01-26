@@ -5,6 +5,13 @@ const Sidebar = ( {
     children
 } ) =>
 {
+    const handleLogout = () =>
+    {
+        localStorage.removeItem( "user" );
+        window.location.href = "/";
+    }
+    const nameUser = JSON.parse( localStorage.getItem( "user" ) );
+    console.log( nameUser.username );
     const dummyNavbar = [
         {
             id: 1,
@@ -35,7 +42,7 @@ const Sidebar = ( {
     return (
         <>
             <div className='w-full flex flex-row gap-5'>
-                <aside className="w-1/5 fixed shadow-md flex h-full min-h-screen flex-col justify-between px-10 top-0 fixed absolute">
+                <aside className="w-1/5  shadow-md flex h-full min-h-screen flex-col justify-between px-10 top-0 left-0 fixed absolute">
                     <div className="flex flex-col gap-2 mt-10">
                         { dummyNavbar.map( ( item ) => (
                             <NavLink
@@ -47,8 +54,15 @@ const Sidebar = ( {
                             </NavLink>
                         ) ) }
                     </div>
-                    <div className='mb-10 text-[#01D2B3] font-poppins font-medium text-xl'>
-                        Hi Admin
+                    <div>
+                        <div className='mb-3 text-[#01D2B3] font-poppins font-medium text-xl capitalize'>
+                            Hi { nameUser.username }
+                        </div>
+                        <button onClick={
+                            handleLogout
+                        } className='bg-[#01D2B3] rounded-md px-4 py-2 mb-5 w-full text-white'>
+                            Logout
+                        </button>
                     </div>
                 </aside>
                 <div className='relative left-1/4 w-3/5 fixed overflow-x-hidden min-h-screen h-full'>

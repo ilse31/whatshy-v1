@@ -7,6 +7,7 @@ import PersonalMessages from "../pages/apps/PersonalMessages";
 import Settings from "../pages/apps/Settings";
 import Auth from "../pages/auth/Auth";
 import Landing from "../pages/LandingPage";
+import Notfound from "../pages/Notfound";
 const Routed = () =>
 {
   return (
@@ -19,6 +20,7 @@ const Routed = () =>
       <Route path="/dashboard/settings" element={ <Settings /> } />
       <Route path="/auth/login" element={ <Auth /> } />
       <Route path="/auth/register" element={ <Auth /> } />
+      <Route path="*" element={ <Notfound /> } />
     </Routes >
   );
 };
