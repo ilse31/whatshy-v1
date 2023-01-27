@@ -8,7 +8,8 @@ import { Tooltip } from 'react-tooltip'
 import * as Yup from 'yup'
 import { AiOutlineEdit, AiFillDelete, AiFillMessage } from "react-icons/ai";
 import ModalForm from '../../components/ModalForm'
-import { useAddPhonebookMutation, useDeletePhonebookMutation, useGetPhonebookQuery, useUpdatePhonebookMutation } from '../../services/api'
+import { useAddPhonebookMutation, useDeletePhonebookMutation, useGetPhonebookQuery } from '../../services/api'
+import { Link } from 'react-router-dom'
 const Contact = () =>
 {
     useDocumentTitle( 'Whatshy | Contact' )
@@ -25,38 +26,18 @@ const Contact = () =>
     const [ formValues, setformValues ] = useState( null )
     const [ chatTemplate, setchatTemplate ] = useState( "" )
     const [ searchValue, setsearchValue ] = useState( "" )
-    let contactValues = {
-        number: '',
-        name: ''
-    }
+
     let addContactval = {
         number: '',
         name: ''
     }
 
-    const handleEdit = ( e, number, name, id ) =>
-    {
-        setformValues( { id: id, number: number, name: name } )
-        console.log( "firm", formValues );
-        e.preventDefault();
-    }
-    const [ update ] = useUpdatePhonebookMutation()
     const [ addcontact ] = useAddPhonebookMutation()
     const [ deleteContact ] = useDeletePhonebookMutation()
     const { data, refetch } = useGetPhonebookQuery( {
         id: JSON.parse( localStorage.getItem( 'user' ) ).id
     } )
 
-    const handleUpdate = ( id ) =>
-    {
-        update( {
-            id: id,
-            number: formValues?.number,
-            name: formValues?.name,
-        } )
-        console.log( "update" );
-        refetch()
-    }
     const handleAddcontact = ( values ) =>
     {
         addContactval = {
@@ -101,8 +82,6 @@ const Contact = () =>
         e.preventDefault();
     }
 
-    const [ showModal, setShowModal ] = React.useState( false );
-    console.log( showModal );
     return (
         <MainLayout>
             <RouteGuard auth={ true }>
@@ -146,15 +125,10 @@ const Contact = () =>
                                                 <Tooltip anchorId={ `update-${ index }` }>
                                                     <span>Update Contact</span>
                                                 </Tooltip>
-                                                <div id={ `update-${ index }` }
-                                                    onClick={ ( e ) => handleEdit( e, item.number, item.name, item.id )
-                                                    }>
-                                                    <Modal button_title={ <AiOutlineEdit /> } modal_title={ "Edit Contact" } >
-                                                        <ModalForm submit={
-                                                            () => handleUpdate( item.id )
-                                                        } contactValues={ formValues || contactValues } validationSchema={ validationSchema } />
-                                                    </Modal>
-                                                </div>
+                                                <Link className='cursor-pointer text-sm px-3 py-2 bg-emerald-500 rounded text-white mb-1' to={ `/dashboard/edit/${ item.id }` } id={ `update-${ index }` }
+                                                >
+                                                    <AiOutlineEdit />
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Broadcast from "../pages/apps/Broadcast";
 import Contact from "../pages/apps/Contact";
+import EditContact from "../pages/apps/EditContact";
 import History from "../pages/apps/History";
 import PersonalMessages from "../pages/apps/PersonalMessages";
 import Settings from "../pages/apps/Settings";
@@ -18,6 +19,7 @@ const Routed = () =>
       <Route path="/dashboard/contacts" element={ <Contact /> } />
       <Route path="/dashboard/history" element={ <History /> } />
       <Route path="/dashboard/settings" element={ <Settings /> } />
+      <Route path="/dashboard/edit/:id" element={ <EditContact /> } />
       <Route path="/auth/login" element={ <Auth /> } />
       <Route path="/auth/register" element={ <Auth /> } />
       <Route path="*" element={ <Notfound /> } />

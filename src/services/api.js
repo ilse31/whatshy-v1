@@ -60,6 +60,14 @@ export const whatshyAPi = createApi({
       }),
       invalidatesTags: ["Phonebook"],
     }),
+    getByIdPhonebook: builder.query({
+      query: ({ id }) => ({
+        url: `/phonebook/id`,
+        method: "POST",
+        params: { id },
+      }),
+      providesTags: ["Phonebook"],
+    }),
   }),
 });
 
@@ -70,4 +78,5 @@ export const {
   useAddPhonebookMutation,
   useDeletePhonebookMutation,
   useUpdatePhonebookMutation,
+  useGetByIdPhonebookQuery,
 } = whatshyAPi;

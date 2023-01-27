@@ -48,10 +48,6 @@ const PersonalMessages = () =>
     useDocumentTitle( 'Whatshy | Personal Messages' )
     return (
         <MainLayout>
-            {/* { btoa( 'Personal Messages' ) }
-            {
-                atob( 'UGVyc29uYWwgTWVzc2FnZXM' )
-            } */}
             <RouteGuard auth={ true }>
                 <Sidebar>
                     <div className='ml-10 mt-12 flex flex-col gap-4'>
