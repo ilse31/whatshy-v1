@@ -102,7 +102,8 @@ const Contact = () =>
                         {
                             data?.users_by_pk?.contactlist?.filter( ( names ) =>
                             {
-                                return names.name.toLowerCase().includes( searchValue.toLowerCase() )
+                                let dataEncode = atob( names.name )
+                                return dataEncode.toLowerCase().includes( searchValue.toLowerCase() )
                             } ).map( ( item, index ) =>
                                 <div className="flex border rounded-md shadow hover:shadow-xl ease-linear transition-all duration-150" key={ index }>
                                     <div className="flex flex-col gap-2 p-5 w-full">

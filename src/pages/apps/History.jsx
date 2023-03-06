@@ -60,7 +60,7 @@ const History = () =>
                                         <div className="flex flex-col gap-2 p-5 w-full">
                                             <div className='flex justify-between'>
                                                 <div className='flex flex-col gap-2 w-1/2'>
-                                                    <span className='flex items-center gap-3'><BsPersonCircle />{ hiistoryi.number }</span>
+                                                    <span className='flex items-center gap-3'><BsPersonCircle />{ atob( hiistoryi.number ) }</span>
                                                     <span className='flex items-center gap-3'><BsFillChatDotsFill /> { hiistoryi.text }</span>
                                                 </div>
                                                 <div className='flex gap-5 items-center justify-end w-1/2'>
