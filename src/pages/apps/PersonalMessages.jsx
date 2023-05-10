@@ -8,13 +8,13 @@ import * as Yup from 'yup'
 import Contact from './Contact'
 const PersonalMessages = () =>
 {
-    const phoneRegExp = /^(\+62|62)8[1-9][0-9]{6,9}$/
+    const phoneRegExp = /^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/g
     const validationSchema =
         Yup.object( {
-            number: Yup.string().required( 'Phone Number Required' ).max( 15 ).min( 13 ).matches(
-                phoneRegExp,
-                'Phone number is not valid, using 62 or +62'
-            ),
+            number: Yup.string().required( 'Phone Number Required' ).max( 15, 'Phone Number Too Long' ).min(
+                12,
+                'Phone Number Too Short'
+            ).matches( phoneRegExp, 'Phone Number is not valid, Please Use +62 or 0' ).typeError( 'Error Server' ),
             message: Yup.string().required( 'Required' ).typeError( 'Error Server' )
         } )
     const loginValues = {
@@ -71,7 +71,7 @@ const PersonalMessages = () =>
                                 <form onSubmit={ handleSubmit } className='flex flex-col gap-4'>
                                     <div className="flex flex-col gap-2 group">
                                         <label htmlFor="number" className="font-poppins font-semibold text-sm group-focus-within:text-[#01D2B3]">Number</label>
-                                        <input type="text" placeholder='Input Phone Number' value={ values.number } onChange={ handleChange } onBlur={ handleBlur } name="number" id="number" className="border-2 bg-white border-[#01D2B3] rounded-md p-1 focus:outline-none focus:bg-white" />
+                                        <input type="text" placeholder='Input Phone Number'  value={ values.number } onChange={ handleChange } onBlur={ handleBlur } name="number" id="number" className="border-2 bg-white border-[#01D2B3] rounded-md p-1 focus:outline-none focus:bg-white" />
                                         <span className='text-red-700'>{ errors.number && touched.number && errors.number }</span>
                                     </div>
                                     <div className="flex flex-col gap-2 group">

@@ -15,11 +15,11 @@ const EditContact = () =>
     const phoneRegExp = /^(\+62|62)8[1-9][0-9]{6,9}$/
     const validationSchema =
         Yup.object( {
-            number: Yup.string().required( 'Phone Number Required' ).max( 15 ).min( 13 ).matches(
-                phoneRegExp,
-                'Phone number is not valid, using 62 or +62'
-            ),
-            name: Yup.string().required( 'Required' ).typeError( 'Error Server' )
+            number: Yup.string().required( 'Phone Number Required' ).max( 15, 'Phone Number Too Long' ).min(
+                12,
+                'Phone Number Too Short'
+            ).matches( phoneRegExp, 'Phone Number is not valid, Please Use +62 or 0' ).typeError( 'Error Server' ),
+            message: Yup.string().required( 'Required' ).typeError( 'Error Server' )
         } )
     let contactValues = {
         number: '',
