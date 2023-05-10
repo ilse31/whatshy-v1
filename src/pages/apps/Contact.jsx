@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 const Contact = () =>
 {
     useDocumentTitle( 'Whatshy | Contact' )
-    const phoneRegExp = /^(\+62|62)8[1-9][0-9]{6,9}$/
+    const phoneRegExp = /^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/g
     const validationSchema =
         Yup.object( {
             number: Yup.string().required( 'Phone Number Required' ).max( 15, 'Phone Number Too Long' ).min(
