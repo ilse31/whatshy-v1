@@ -19,7 +19,7 @@ const EditContact = () =>
                 12,
                 'Phone Number Too Short'
             ).matches( phoneRegExp, 'Phone Number is not valid, Please Use +62 or 0' ).typeError( 'Error Server' ),
-            message: Yup.string().required( 'Required' ).typeError( 'Error Server' )
+            name: Yup.string().required( 'Required' ).typeError( 'Error Server' )
         } )
     let contactValues = {
         number: '',
